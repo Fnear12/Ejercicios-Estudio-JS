@@ -50,11 +50,9 @@ function operator(myoperator) {
   return `Resultado final = ${result.join(" ")}`
 }
 
-
 const btn = document.getElementById('btn')
 
 btn.addEventListener('click', function () {
   const myoperator = document.getElementById('myOperator').value
-  console.log(myoperator)
   document.getElementById('myResult').innerHTML = operator(myoperator);
 })
