@@ -10,8 +10,20 @@ In other words, the function should not use an auxiliary array to do the work.
 
 */
 
-function Operator(myoperator) {
-  let myInput = document.getElementById("myInput").value.split(/,|/)
+function randomArray(n) {
+  const randomarray = []
+  for (let i = 1; randomarray.push(i++) < n;);
+
+  for (let i = randomarray.length - 1; i > 0; i--) {
+    const rand = Math.floor(Math.random() * (i + 1));
+    [randomarray[i], randomarray[rand]] = [randomarray[rand], randomarray[i]];
+  }
+  return randomarray
+}
+
+
+function operator(myoperator) {
+  let myInput = document.getElementById("myInput").value.split(/, | /)
 
   switch (myoperator) {
     case 'Reverses':
@@ -28,6 +40,11 @@ function Operator(myoperator) {
       })
       result = uniquemyInput;
       break;
+    case 'missing_number':
+      const random_array_miss = randomArray(myInput)
+      deleted_number = random_array_miss.splice(Math.floor(Math.random() * myInput), 1)
+      result = randomArray(myInput).filter(x => !random_array_miss.includes(x))
+      break
   }
 
   return `Resultado final = ${result.join(" ")}`
@@ -39,5 +56,5 @@ const btn = document.getElementById('btn')
 btn.addEventListener('click', function () {
   const myoperator = document.getElementById('myOperator').value
   console.log(myoperator)
-  document.getElementById('myResult').innerHTML = Operator(myoperator);
+  document.getElementById('myResult').innerHTML = operator(myoperator);
 })
